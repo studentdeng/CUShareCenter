@@ -19,6 +19,9 @@
 #define SINA_USERID_KEY         @"com.sina.uid"
 #define SINA_EXPIRATIONDATE_KEY @"com.sina.expirationDate"
 
+#define NOTIFICATION_SINA_LOGIN_SUCCESS     @"CUSINAClient.login.success"
+#define NOTIFICATION_SINA_LOGIN_FALIED      @"CUSINAClient.login.failed"
+
 
 @interface CUSINAClient ()
 
@@ -59,6 +62,17 @@
 {
     self.successBlock = [success copy];
     self.failedBlock = [errorBlock copy];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleLoginNotification:)
+                                                 name:NOTIFICATION_SINA_LOGIN_SUCCESS
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleLoginNotification:)
+                                                 name:NOTIFICATION_SINA_LOGIN_FALIED
+                                               object:nil];
+    
     [self.sinaweiboSDK logIn];
 }
 
@@ -74,6 +88,11 @@
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:SINA_EXPIRATIONDATE_KEY];
     
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)isBind
+{
+    return [self.sinaweiboSDK isLoggedIn];
 }
 
 - (CUPlatFormOAuth *)OAuthInfo
@@ -94,6 +113,9 @@
 {
     NSString *accessToken = self.sinaweiboSDK.accessToken;
     NSString *uid = self.sinaweiboSDK.userID;
+    
+    NSAssert(accessToken, @"accessToken nil");
+    NSAssert(uid, @"uid nil");
     
     self.request =
     [[CUSinaAPIClient shareObjectManager] getJSONRequestAtPath:@"2/users/show.json"
@@ -127,6 +149,8 @@
     self.failedBlock = nil;
     
     [self.request clearDelegatesAndCancel];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -136,20 +160,6 @@
     }
     
     return [self.sinaweiboSDK handleOpenURL:url];
-}
-
-/*!
- 注册回调通知
- */
-- (void)registerDelegate:(id<CUShareCenterDelegate>)aDelegate
-{
-}
-
-/*!
- 删除回调通知
- */
-- (void)removeDelegate:(id<CUShareCenterDelegate>)aDelegate
-{
 }
 
 #pragma mark - SinaWeiboDelegate
@@ -162,9 +172,26 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (self.successBlock) {
-        self.successBlock(@"success", nil);
-    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SINA_LOGIN_SUCCESS
+                                                        object:self];
+}
+
+- (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SINA_LOGIN_FALIED
+                                                        object:self];
+}
+
+- (void)sinaweibo:(SinaWeibo *)sinaweibo logInDidFailWithError:(NSError *)error
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SINA_LOGIN_FALIED
+                                                        object:self];
+}
+
+- (void)sinaweibo:(SinaWeibo *)sinaweibo accessTokenInvalidOrExpired:(NSError *)error
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SINA_LOGIN_FALIED
+                                                        object:self];
 }
 
 - (void)sinaweiboDidLogOut:(SinaWeibo *)sinaweibo
@@ -174,24 +201,26 @@
     }
 }
 
-- (void)sinaweiboLogInDidCancel:(SinaWeibo *)sinaweibo
-{
-    if (self.failedBlock) {
-        self.failedBlock(@"cancel", nil);
-    }
-}
+#pragma mark - notification
 
-- (void)sinaweibo:(SinaWeibo *)sinaweibo logInDidFailWithError:(NSError *)error
+- (void)handleLoginNotification:(NSNotification *)notify
 {
-    if (self.failedBlock) {
-        self.failedBlock(@"error", nil);
+    NSString *name = notify.name;
+    if ([name isEqualToString:NOTIFICATION_SINA_LOGIN_SUCCESS]) {
+        
+        if (self.successBlock) {
+            self.successBlock(@"success", nil);
+        }
+        
+        [self clear];
     }
-}
-
-- (void)sinaweibo:(SinaWeibo *)sinaweibo accessTokenInvalidOrExpired:(NSError *)error
-{
-    if (self.failedBlock) {
-        self.failedBlock(@"error", nil);
+    else if ([name isEqualToString:NOTIFICATION_SINA_LOGIN_FALIED])
+    {
+        if (self.failedBlock) {
+            self.failedBlock(@"error", nil);
+        }
+        
+        [self clear];
     }
 }
 

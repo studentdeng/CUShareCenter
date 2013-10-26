@@ -14,27 +14,45 @@
 @class ASIHTTPRequest;
 @protocol CUShareClientDataSource <NSObject>
 
-/*!
- 注册回调通知
- */
-- (void)registerDelegate:(id<CUShareCenterDelegate>)aDelegate;
-
-/*!
- 删除回调通知
- */
-- (void)removeDelegate:(id<CUShareCenterDelegate>)aDelegate;
-
-
 - (id)initWithPlatForm:(PlatFormModel *)model;
+
+#pragma mark - Bind/unBind
 
 - (void)bindSuccess:(void (^)(NSString *message, id data))success
               error:(void (^)(NSString *message, id data))errorBlock;
 
 - (void)unBind;
-- (ASIHTTPRequest *)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock;
-- (CUPlatFormOAuth *)OAuthInfo;
+- (BOOL)isBind;
 
+#pragma mark - userInfo
+
+- (CUPlatFormOAuth *)OAuthInfo;
+- (ASIHTTPRequest *)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock;
+
+#pragma mark - share
+
+- (void)platForm:(NSString *)platForm
+         content:(NSString *)content
+         success:(void (^)(id data))success
+           error:(void (^)(id error))errorBlock;
+
+- (void)platForm:(NSString *)platForm
+         content:(NSString *)content
+       imageData:(NSData *)imageData
+         success:(void (^)(id data))success
+           error:(void (^)(id error))errorBlock;;
+
+- (void)platForm:(NSString *)platForm
+         content:(NSString *)content
+        imageURL:(NSString *)imageURL
+         success:(void (^)(id data))success
+           error:(void (^)(id error))errorBlock;
+
+#pragma mark - other
 - (void)clear;
+
+- (void)handleOpenURLNofication:(id)notify;
+
 - (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end
@@ -65,43 +83,13 @@
                       appSecret:(NSString *)appSecret
                     redirectUri:(NSString *)redirectUri;
 
-#pragma mark - share method
+/*!
+ */
++ (id<CUShareClientDataSource>)clientWithPlatForm:(NSString *)platForm;
 
-+ (id<CUShareClientDataSource>)bindWithPlatForm:(NSString *)platForm
-                                        success:(void (^)(NSString *message, id data))success
-                                          error:(void (^)(NSString *message, id data))errorBlock;
-
-+ (id<CUShareClientDataSource>)unBindWithPlatForm:(NSString *)platForm;
-
-#pragma mark - user info
-
-+ (void)userInfoWithPlatForm:(NSString *)platForm
-                     success:(void (^)(CUPlatFormUserModel *model))success
-                       error:(void (^)(id data))errorBlock;
-
-#pragma mark - share
-
-+ (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;
-
-+ (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-       imageData:(NSData *)imageData
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;;
-
-+ (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-        imageURL:(NSString *)imageURL
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;
-
-#pragma mark - other
-
-- (id<CUShareClientDataSource>)clientWithPlatForm:(NSString *)platForm;
-
+/*!
+ SSO handle
+ */
 + (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

@@ -67,12 +67,9 @@
                                                      redirectUri:redirectUri];
 }
 
-+ (void)userInfoWithPlatForm:(NSString *)platForm
-                     success:(void (^)(CUPlatFormUserModel *model))success
-                       error:(void (^)(id data))errorBlock
++ (id<CUShareClientDataSource>)clientWithPlatForm:(NSString *)platForm
 {
-    id<CUShareClientDataSource> client = [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
-    [client userInfoSuccess:success error:errorBlock];
+    return [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
 }
 
 #pragma mark - Bind / Unbind
@@ -90,32 +87,11 @@
     return nil;
 }
 
-+ (id<CUShareClientDataSource>)bindWithPlatForm:(NSString *)platForm
-                                      success:(void (^)(NSString *message, id data))success
-                                        error:(void (^)(NSString *message, id data))errorBlock
-{
-    id<CUShareClientDataSource> client = [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
-    [client bindSuccess:success error:errorBlock];
-    return client;
-}
-
-+ (id<CUShareClientDataSource>)unBindWithPlatForm:(NSString *)platForm
-{
-    id<CUShareClientDataSource> client = [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
-    [client unBind];
-    return client;
-}
-
 #pragma mark - private
 
 - (void)setup
 {
     self.platFormDictionary = [NSMutableDictionary dictionary];
-}
-
-+ (void)registerDelegate:(id<CUShareCenterDelegate>)aDelegate
-{
-    
 }
 
 /*!
@@ -160,8 +136,14 @@
 + (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     NSString *platForm = nil;
+    if ([sourceApplication isEqualToString:@"com.sina.weibo"]) {
+        platForm = @"新浪微博";
+    }
     
-    platForm = @"新浪微博";
+    if (platForm.length == 0) {
+        return NO;
+    }
+    
     
     id<CUShareClientDataSource> client = [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
     return [client openURL:url sourceApplication:sourceApplication annotation:annotation];
