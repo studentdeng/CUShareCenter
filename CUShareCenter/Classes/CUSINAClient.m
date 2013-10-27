@@ -122,6 +122,10 @@
 
 - (ASIHTTPRequest *)requestUserInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
 {
+    if (!self.sinaweiboSDK.isAuthValid) {
+        return nil;
+    }
+    
     NSString *accessToken = self.sinaweiboSDK.accessToken;
     NSString *uid = self.sinaweiboSDK.userID;
     
@@ -171,7 +175,9 @@
         success:(void (^)(id data))success
           error:(void (^)(id error))errorBlock
 {
-    
+    [self.request clearDelegatesAndCancel];
+    self.request = [self requestContent:content imageData:imageData success:success error:errorBlock];
+    [self.request startAsynchronous];
 }
 
 - (void)content:(NSString *)content
@@ -179,7 +185,9 @@
         success:(void (^)(id data))success
           error:(void (^)(id error))errorBlock
 {
-    
+    [self.request clearDelegatesAndCancel];
+    self.request = [self requestContent:content imageURL:imageURL success:success error:errorBlock];
+    [self.request startAsynchronous];
 }
 
 - (ASIHTTPRequest *)requestContent:(NSString *)content
@@ -187,6 +195,7 @@
                            success:(void (^)(id data))success
                              error:(void (^)(id error))errorBlock
 {
+    NSAssert(FALSE, @"not @implement 新浪高级授权接口");
     return nil;
 }
 
@@ -195,7 +204,26 @@
                            success:(void (^)(id data))success
                              error:(void (^)(id error))errorBlock
 {
-    return nil;
+    if (!self.sinaweiboSDK.isAuthValid) {
+        return nil;
+    }
+    
+    NSString *accessToken = self.sinaweiboSDK.accessToken;
+    NSAssert(accessToken, @"accessToken nil");
+    
+    ASIHTTPRequest *request = [[CUSinaAPIClient shareObjectManager] postJSONRequestAtPath:@"2/statuses/upload.json"
+                                                                                userBlock:^(ASIFormDataRequest *ASIRequest) {
+                                                                                    [ASIRequest addPostValue:content forKey:@"status"];
+                                                                                    [ASIRequest setPostValue:accessToken forKey:@"access_token"];
+                                                                                    [ASIRequest addData:imageData forKey:@"pic"];
+                                                                                    
+                                                                                } success:^(ASIHTTPRequest *ASIRequest, id json) {
+                                                                                    success(json);
+                                                                                } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
+                                                                                    errorBlock(errorMsg);
+                                                                                }];
+    
+    return request;
 }
 
 - (void)clear
