@@ -27,32 +27,27 @@
 #pragma mark - userInfo
 
 - (CUPlatFormOAuth *)OAuthInfo;
-- (ASIHTTPRequest *)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock;
+- (ASIHTTPRequest *)requestUserInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock;
+- (void)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock;
 
 #pragma mark - share
 
-- (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;
+- (void)content:(NSString *)content
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock;
 
-- (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-       imageData:(NSData *)imageData
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;;
+- (void)content:(NSString *)content
+      imageData:(NSData *)imageData
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock;;
 
-- (void)platForm:(NSString *)platForm
-         content:(NSString *)content
-        imageURL:(NSString *)imageURL
-         success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock;
+- (void)content:(NSString *)content
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock;
 
 #pragma mark - other
 - (void)clear;
-
-- (void)handleOpenURLNofication:(id)notify;
-
 - (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
 
 @end

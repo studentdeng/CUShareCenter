@@ -117,22 +117,6 @@
                                 forKey:platForm];
 }
 
-+ (void)platForm:(NSString *)platForm content:(NSString *)content success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock
-{
-}
-
-+ (void)platForm:(NSString *)platForm content:(NSString *)content imageData:(NSData *)imageData success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock
-{
-}
-
-+ (void)platForm:(NSString *)platForm content:(NSString *)content imageURL:(NSString *)imageURL success:(void (^)(id data))success
-           error:(void (^)(id error))errorBlock
-{
-    
-}
-
 + (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     NSString *platForm = nil;

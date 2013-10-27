@@ -58,6 +58,8 @@
     return self;
 }
 
+#pragma mark - Bind/unBind
+
 - (void)bindSuccess:(void (^)(NSString *message, id data))success error:(void (^)(NSString *message, id data))errorBlock
 {
     self.successBlock = [success copy];
@@ -95,6 +97,8 @@
     return [self.sinaweiboSDK isLoggedIn];
 }
 
+#pragma mark - userInfo
+
 - (CUPlatFormOAuth *)OAuthInfo
 {
     if (![self.sinaweiboSDK isAuthValid]) {
@@ -109,7 +113,14 @@
     return info;
 }
 
-- (ASIHTTPRequest *)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
+- (void)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
+{
+    [self.request clearDelegatesAndCancel];
+    self.request = [self requestUserInfoSuccess:success error:errorBlock];
+    [self.request startAsynchronous];
+}
+
+- (ASIHTTPRequest *)requestUserInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
 {
     NSString *accessToken = self.sinaweiboSDK.accessToken;
     NSString *uid = self.sinaweiboSDK.userID;
@@ -117,7 +128,7 @@
     NSAssert(accessToken, @"accessToken nil");
     NSAssert(uid, @"uid nil");
     
-    self.request =
+    ASIHTTPRequest *request =
     [[CUSinaAPIClient shareObjectManager] getJSONRequestAtPath:@"2/users/show.json"
                                                     parameters:@{
                                                                  @"access_token" : accessToken,
@@ -136,10 +147,55 @@
                                                        } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
                                                            errorBlock(ASIRequest.responseString);
                                                        }];
+    return request;
+}
+
+#pragma mark - share
+
+- (void)content:(NSString *)content success:(void (^)(id data))success
+           error:(void (^)(id error))errorBlock
+{
+    [self.request clearDelegatesAndCancel];
     
-    [self.request startAsynchronous];
+    self.request = [self requestContent:content
+                               imageURL:nil
+                                success:^(id data) {
+                                    
+                                } error:^(id error) {
+                                    
+                                }];
+}
+
+- (void)content:(NSString *)content
+      imageData:(NSData *)imageData
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
     
-    return self.request;
+}
+
+- (void)content:(NSString *)content
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    
+}
+
+- (ASIHTTPRequest *)requestContent:(NSString *)content
+                          imageURL:(NSString *)imageURL
+                           success:(void (^)(id data))success
+                             error:(void (^)(id error))errorBlock
+{
+    return nil;
+}
+
+- (ASIHTTPRequest *)requestContent:(NSString *)content
+                         imageData:(NSData *)imageData
+                           success:(void (^)(id data))success
+                             error:(void (^)(id error))errorBlock
+{
+    return nil;
 }
 
 - (void)clear
