@@ -71,6 +71,13 @@
                             appSecret:(NSString *)appSecret
                           redirectUri:(NSString *)redirectUri;
 
+/**
+ 腾讯微博
+ */
++ (void)connectTencentQQWithAppKey:(NSString *)appKey
+                         appSecret:(NSString *)appSecret
+                       redirectUri:(NSString *)redirectUri;
+
 /*!
  人人
  */

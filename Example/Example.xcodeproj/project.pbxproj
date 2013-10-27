@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		D7A210B8181CB2D30060AEC1 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7A210B7181CB2D30060AEC1 /* test.jpg */; };
 		D7A210BA181CB89D0060AEC1 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = D7A210B9181CB89D0060AEC1 /* test.gif */; };
+		D7A210BE181CB9CF0060AEC1 /* CUQQClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */; };
+		D7A210C3181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7A210C1181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle */; };
+		D7A210C5181CBAC00060AEC1 /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210C4181CBAC00060AEC1 /* libiconv.dylib */; };
+		D7A210C7181CBACA0060AEC1 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210C6181CBACA0060AEC1 /* SystemConfiguration.framework */; };
+		D7A210C9181CBAD40060AEC1 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210C8181CBAD40060AEC1 /* libsqlite3.dylib */; };
+		D7A210CB181CBADA0060AEC1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */; };
+		D7A210CD181CBAE80060AEC1 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */; };
+		D7A210CF181CBAEF0060AEC1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CE181CBAEF0060AEC1 /* libz.dylib */; };
+		D7A210D1181CBB190060AEC1 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */; };
 		D7C0D52D181A377200C34D7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D52C181A377200C34D7F /* Foundation.framework */; };
 		D7C0D52F181A377200C34D7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D52E181A377200C34D7F /* CoreGraphics.framework */; };
 		D7C0D531181A377200C34D7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D530181A377200C34D7F /* UIKit.framework */; };
@@ -24,7 +33,6 @@
 		D7C0D568181A37B400C34D7F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D563181A37B400C34D7F /* main.m */; };
 		D7C0D579181A3DAC00C34D7F /* CUShareCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D578181A3DAC00C34D7F /* CUShareCenter.m */; };
 		D7C0D57F181A3F5700C34D7F /* PlatFormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D57D181A3F5700C34D7F /* PlatFormModel.m */; };
-		D7C0D583181A416400C34D7F /* GCDMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D582181A416400C34D7F /* GCDMulticastDelegate.m */; };
 		D7C0D589181A467200C34D7F /* CUSINAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D588181A467200C34D7F /* CUSINAClient.m */; };
 		D7C0D593181A47C400C34D7F /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7C0D58B181A47C400C34D7F /* SinaWeibo.bundle */; };
 		D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D58D181A47C400C34D7F /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -53,6 +61,16 @@
 		48E8EF4079A6421C9F723F99 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		D7A210B7181CB2D30060AEC1 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D7A210B9181CB89D0060AEC1 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
+		D7A210BC181CB9CF0060AEC1 /* CUQQClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUQQClient.h; sourceTree = "<group>"; };
+		D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUQQClient.m; sourceTree = "<group>"; };
+		D7A210C1181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		D7A210C4181CBAC00060AEC1 /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		D7A210C6181CBACA0060AEC1 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D7A210C8181CBAD40060AEC1 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		D7A210CE181CBAEF0060AEC1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		D7C0D529181A377200C34D7F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C0D52C181A377200C34D7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7C0D52E181A377200C34D7F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,8 +92,6 @@
 		D7C0D578181A3DAC00C34D7F /* CUShareCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUShareCenter.m; sourceTree = "<group>"; };
 		D7C0D57D181A3F5700C34D7F /* PlatFormModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlatFormModel.m; sourceTree = "<group>"; };
 		D7C0D57E181A3F5700C34D7F /* PlatFormModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlatFormModel.h; sourceTree = "<group>"; };
-		D7C0D581181A416400C34D7F /* GCDMulticastDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDMulticastDelegate.h; sourceTree = "<group>"; };
-		D7C0D582181A416400C34D7F /* GCDMulticastDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDMulticastDelegate.m; sourceTree = "<group>"; };
 		D7C0D587181A467200C34D7F /* CUSINAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUSINAClient.h; sourceTree = "<group>"; };
 		D7C0D588181A467200C34D7F /* CUSINAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUSINAClient.m; sourceTree = "<group>"; };
 		D7C0D58B181A47C400C34D7F /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
@@ -102,8 +118,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A210CF181CBAEF0060AEC1 /* libz.dylib in Frameworks */,
+				D7A210CD181CBAE80060AEC1 /* libstdc++.dylib in Frameworks */,
+				D7A210CB181CBADA0060AEC1 /* CoreTelephony.framework in Frameworks */,
+				D7A210C9181CBAD40060AEC1 /* libsqlite3.dylib in Frameworks */,
+				D7A210C7181CBACA0060AEC1 /* SystemConfiguration.framework in Frameworks */,
+				D7A210C5181CBAC00060AEC1 /* libiconv.dylib in Frameworks */,
 				D7C0D52F181A377200C34D7F /* CoreGraphics.framework in Frameworks */,
 				D7C0D531181A377200C34D7F /* UIKit.framework in Frameworks */,
+				D7A210D1181CBB190060AEC1 /* TencentOpenAPI.framework in Frameworks */,
 				D7C0D52D181A377200C34D7F /* Foundation.framework in Frameworks */,
 				F580A03EAA75484ABBB33A87 /* libPods.a in Frameworks */,
 			);
@@ -131,6 +154,25 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		D7A210BB181CB97B0060AEC1 /* sina */ = {
+			isa = PBXGroup;
+			children = (
+				D7C0D587181A467200C34D7F /* CUSINAClient.h */,
+				D7C0D588181A467200C34D7F /* CUSINAClient.m */,
+				D7C0D5A3181A8A9E00C34D7F /* CUSinaAPIClient.h */,
+				D7C0D5A4181A8A9E00C34D7F /* CUSinaAPIClient.m */,
+			);
+			name = sina;
+			sourceTree = "<group>";
+		};
+		D7A210BF181CBA900060AEC1 /* qq */ = {
+			isa = PBXGroup;
+			children = (
+				D7A210C1181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle */,
+			);
+			path = qq;
+			sourceTree = "<group>";
+		};
 		D7C0D520181A377200C34D7F = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +197,13 @@
 		D7C0D52B181A377200C34D7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */,
+				D7A210CE181CBAEF0060AEC1 /* libz.dylib */,
+				D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */,
+				D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */,
+				D7A210C8181CBAD40060AEC1 /* libsqlite3.dylib */,
+				D7A210C6181CBACA0060AEC1 /* SystemConfiguration.framework */,
+				D7A210C4181CBAC00060AEC1 /* libiconv.dylib */,
 				D7C0D52C181A377200C34D7F /* Foundation.framework */,
 				D7C0D52E181A377200C34D7F /* CoreGraphics.framework */,
 				D7C0D530181A377200C34D7F /* UIKit.framework */,
@@ -238,10 +287,9 @@
 			children = (
 				D7C0D577181A3DAC00C34D7F /* CUShareCenter.h */,
 				D7C0D578181A3DAC00C34D7F /* CUShareCenter.m */,
-				D7C0D587181A467200C34D7F /* CUSINAClient.h */,
-				D7C0D588181A467200C34D7F /* CUSINAClient.m */,
-				D7C0D5A3181A8A9E00C34D7F /* CUSinaAPIClient.h */,
-				D7C0D5A4181A8A9E00C34D7F /* CUSinaAPIClient.m */,
+				D7A210BB181CB97B0060AEC1 /* sina */,
+				D7A210BC181CB9CF0060AEC1 /* CUQQClient.h */,
+				D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -249,9 +297,8 @@
 		D7C0D580181A416400C34D7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D7A210BF181CBA900060AEC1 /* qq */,
 				D7C0D58A181A47C400C34D7F /* SinaWeibo */,
-				D7C0D581181A416400C34D7F /* GCDMulticastDelegate.h */,
-				D7C0D582181A416400C34D7F /* GCDMulticastDelegate.m */,
 			);
 			path = Vendor;
 			sourceTree = "<group>";
@@ -348,6 +395,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D7A210C3181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				D7A210BA181CB89D0060AEC1 /* test.gif in Resources */,
 				D7C0D567181A37B400C34D7F /* Images.xcassets in Resources */,
 				D7A210B8181CB2D30060AEC1 /* test.jpg in Resources */,
@@ -412,12 +460,12 @@
 				D7C0D589181A467200C34D7F /* CUSINAClient.m in Sources */,
 				D7C0D595181A47C400C34D7F /* SinaWeiboAuthorizeView.m in Sources */,
 				D7C0D568181A37B400C34D7F /* main.m in Sources */,
+				D7A210BE181CB9CF0060AEC1 /* CUQQClient.m in Sources */,
 				D7C0D579181A3DAC00C34D7F /* CUShareCenter.m in Sources */,
 				D7C0D5A2181A86A500C34D7F /* CUPlatFormOAuth.m in Sources */,
 				D7C0D564181A37B400C34D7F /* AppDelegate.m in Sources */,
 				D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */,
 				D7C0D59A181A50FD00C34D7F /* ExampleViewController.m in Sources */,
-				D7C0D583181A416400C34D7F /* GCDMulticastDelegate.m in Sources */,
 				D7C0D596181A47C400C34D7F /* SinaWeiboRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,10 +586,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
+					/Users/curer/myGitHub/CUShareCenter/Example,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2.2",
+					"-lz.1",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					SystemConfiguration,
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -553,10 +620,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
+					/Users/curer/myGitHub/CUShareCenter/Example,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
 				INFOPLIST_FILE = "Example/Example-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lxml2.2",
+					"-lz.1",
+					"-framework",
+					CFNetwork,
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					SystemConfiguration,
+					"-fobjc-arc",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -10,6 +10,7 @@
 #import "CUMacro.h"
 #import "PlatFormModel.h"
 #import "CUSINAClient.h"
+#import "CUQQClient.h"
 
 @interface CUShareCenter ()
 
@@ -40,6 +41,18 @@
                        redirectUri:(NSString *)redirectUri
 {
     [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"新浪微博"
+                                                          AppKey:appKey
+                                                       appSecret:appSecret
+                                                     redirectUri:redirectUri];
+}
+
+
+//腾讯QQ
++ (void)connectTencentQQWithAppKey:(NSString *)appKey
+                         appSecret:(NSString *)appSecret
+                       redirectUri:(NSString *)redirectUri
+{
+    [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"QQ"
                                                           AppKey:appKey
                                                        appSecret:appSecret
                                                      redirectUri:redirectUri];
@@ -79,9 +92,13 @@
     if ([platForm isEqualToString:@"新浪微博"]) {
         PlatFormModel *model = [CUShareCenter sharedInstance].platFormDictionary[platForm];
         NSAssert(model, [platForm stringByAppendingString:@" did not found"]);
-        CUSINAClient *client = [[CUSINAClient alloc] initWithPlatForm:model];
-        
-        return client;
+        return [[CUSINAClient alloc] initWithPlatForm:model];
+    }
+    else if ([platForm isEqualToString:@"QQ"])
+    {
+        PlatFormModel *model = [CUShareCenter sharedInstance].platFormDictionary[platForm];
+        NSAssert(model, [platForm stringByAppendingString:@" did not found"]);
+        return [[CUQQClient alloc] initWithPlatForm:model];
     }
     
     return nil;
@@ -122,6 +139,10 @@
     NSString *platForm = nil;
     if ([sourceApplication isEqualToString:@"com.sina.weibo"]) {
         platForm = @"新浪微博";
+    }
+    else
+    {
+        platForm = @"QQ";
     }
     
     if (platForm.length == 0) {
