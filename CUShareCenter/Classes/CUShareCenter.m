@@ -140,7 +140,7 @@
     if ([sourceApplication isEqualToString:@"com.sina.weibo"]) {
         platForm = @"新浪微博";
     }
-    else
+    else if ([sourceApplication isEqualToString:@"com.tencent.mqq"])
     {
         platForm = @"QQ";
     }
@@ -148,7 +148,6 @@
     if (platForm.length == 0) {
         return NO;
     }
-    
     
     id<CUShareClientDataSource> client = [[CUShareCenter sharedInstance] clientWithPlatForm:platForm];
     return [client openURL:url sourceApplication:sourceApplication annotation:annotation];

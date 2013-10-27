@@ -17,7 +17,7 @@
 		D7A210CB181CBADA0060AEC1 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */; };
 		D7A210CD181CBAE80060AEC1 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */; };
 		D7A210CF181CBAEF0060AEC1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210CE181CBAEF0060AEC1 /* libz.dylib */; };
-		D7A210D1181CBB190060AEC1 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */; };
+		D7A210DC181CE6370060AEC1 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7A210DB181CE6370060AEC1 /* TencentOpenAPI.framework */; };
 		D7C0D52D181A377200C34D7F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D52C181A377200C34D7F /* Foundation.framework */; };
 		D7C0D52F181A377200C34D7F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D52E181A377200C34D7F /* CoreGraphics.framework */; };
 		D7C0D531181A377200C34D7F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C0D530181A377200C34D7F /* UIKit.framework */; };
@@ -70,7 +70,7 @@
 		D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		D7A210CE181CBAEF0060AEC1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		D7A210DB181CE6370060AEC1 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		D7C0D529181A377200C34D7F /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7C0D52C181A377200C34D7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D7C0D52E181A377200C34D7F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,7 +126,7 @@
 				D7A210C5181CBAC00060AEC1 /* libiconv.dylib in Frameworks */,
 				D7C0D52F181A377200C34D7F /* CoreGraphics.framework in Frameworks */,
 				D7C0D531181A377200C34D7F /* UIKit.framework in Frameworks */,
-				D7A210D1181CBB190060AEC1 /* TencentOpenAPI.framework in Frameworks */,
+				D7A210DC181CE6370060AEC1 /* TencentOpenAPI.framework in Frameworks */,
 				D7C0D52D181A377200C34D7F /* Foundation.framework in Frameworks */,
 				F580A03EAA75484ABBB33A87 /* libPods.a in Frameworks */,
 			);
@@ -168,6 +168,7 @@
 		D7A210BF181CBA900060AEC1 /* qq */ = {
 			isa = PBXGroup;
 			children = (
+				D7A210DB181CE6370060AEC1 /* TencentOpenAPI.framework */,
 				D7A210C1181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle */,
 			);
 			path = qq;
@@ -197,7 +198,6 @@
 		D7C0D52B181A377200C34D7F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D7A210D0181CBB190060AEC1 /* TencentOpenAPI.framework */,
 				D7A210CE181CBAEF0060AEC1 /* libz.dylib */,
 				D7A210CC181CBAE70060AEC1 /* libstdc++.dylib */,
 				D7A210CA181CBADA0060AEC1 /* CoreTelephony.framework */,

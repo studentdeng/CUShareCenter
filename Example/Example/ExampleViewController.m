@@ -109,12 +109,22 @@
         }];
     }
 }
+
 - (IBAction)qqLoginButtonClicked:(id)sender {
     self.qq = [CUShareCenter clientWithPlatForm:@"QQ"];
+    if ([self.qq isBind]) {
+        NSLog(@"bind already");
+        return;
+    }
+    
     [self.qq bindSuccess:^(NSString *message, id data) {
         NSLog(@"%@", message);
     } error:^(NSString *message, id data) {
         NSLog(@"%@", message);
     }];
+}
+
+- (IBAction)logoutQQButtonClicked:(id)sender {
+    [[CUShareCenter clientWithPlatForm:@"QQ"] unBind];
 }
 @end
