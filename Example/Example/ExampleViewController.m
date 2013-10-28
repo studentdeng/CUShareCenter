@@ -127,4 +127,13 @@
 - (IBAction)logoutQQButtonClicked:(id)sender {
     [[CUShareCenter clientWithPlatForm:@"QQ"] unBind];
 }
+
+- (IBAction)QQUserInfoButtonClicked:(id)sender {
+    [[CUShareCenter clientWithPlatForm:@"QQ"] userInfoSuccess:^(CUPlatFormUserModel *model) {
+        NSLog(@"%@", model.nickname);
+        NSLog(@"%@", model.avatar);
+    } error:^(id data) {
+        
+    }];
+}
 @end

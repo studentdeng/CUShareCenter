@@ -43,6 +43,7 @@
 		D7C0D59F181A862D00C34D7F /* CUPlatFormUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D59E181A862D00C34D7F /* CUPlatFormUserModel.m */; };
 		D7C0D5A2181A86A500C34D7F /* CUPlatFormOAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D5A1181A86A500C34D7F /* CUPlatFormOAuth.m */; };
 		D7C0D5A5181A8A9E00C34D7F /* CUSinaAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D5A4181A8A9E00C34D7F /* CUSinaAPIClient.m */; };
+		D7C15CAD181E0E9C00F83FE6 /* CUQQAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C15CAC181E0E9C00F83FE6 /* CUQQAPIClient.m */; };
 		F580A03EAA75484ABBB33A87 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4366F02E4DCB48ACB7C8D468 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,8 @@
 		D7C0D5A1181A86A500C34D7F /* CUPlatFormOAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUPlatFormOAuth.m; sourceTree = "<group>"; };
 		D7C0D5A3181A8A9E00C34D7F /* CUSinaAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUSinaAPIClient.h; sourceTree = "<group>"; };
 		D7C0D5A4181A8A9E00C34D7F /* CUSinaAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUSinaAPIClient.m; sourceTree = "<group>"; };
+		D7C15CAB181E0E9C00F83FE6 /* CUQQAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUQQAPIClient.h; sourceTree = "<group>"; };
+		D7C15CAC181E0E9C00F83FE6 /* CUQQAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CUQQAPIClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,8 +291,7 @@
 				D7C0D577181A3DAC00C34D7F /* CUShareCenter.h */,
 				D7C0D578181A3DAC00C34D7F /* CUShareCenter.m */,
 				D7A210BB181CB97B0060AEC1 /* sina */,
-				D7A210BC181CB9CF0060AEC1 /* CUQQClient.h */,
-				D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */,
+				D7C15CAA181E0E8500F83FE6 /* qq */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -316,6 +318,17 @@
 				D7C0D592181A47C400C34D7F /* SinaWeiboRequest.m */,
 			);
 			path = SinaWeibo;
+			sourceTree = "<group>";
+		};
+		D7C15CAA181E0E8500F83FE6 /* qq */ = {
+			isa = PBXGroup;
+			children = (
+				D7A210BC181CB9CF0060AEC1 /* CUQQClient.h */,
+				D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */,
+				D7C15CAB181E0E9C00F83FE6 /* CUQQAPIClient.h */,
+				D7C15CAC181E0E9C00F83FE6 /* CUQQAPIClient.m */,
+			);
+			name = qq;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -467,6 +480,7 @@
 				D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */,
 				D7C0D59A181A50FD00C34D7F /* ExampleViewController.m in Sources */,
 				D7C0D596181A47C400C34D7F /* SinaWeiboRequest.m in Sources */,
+				D7C15CAD181E0E9C00F83FE6 /* CUQQAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

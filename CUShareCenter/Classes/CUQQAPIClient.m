@@ -1,0 +1,52 @@
+//
+//  CUQQAPIClient.m
+//  Example
+//
+//  Created by curer on 13-10-28.
+//  Copyright (c) 2013年 curer. All rights reserved.
+//
+
+#import "CUQQAPIClient.h"
+
+@implementation CUQQAPIClient
+
++ (CUObjectManager *)shareObjectManager
+{
+    static dispatch_once_t pred = 0;
+    __strong static CUObjectManager *_sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[CUObjectManager alloc] init]; // or some other init method
+        _sharedObject.baseURLString = @"https://graph.qq.com/";
+        [CUQQAPIClient setup:_sharedObject];
+    });
+    
+    return _sharedObject;
+}
+
++ (void)setup:(CUObjectManager *)objectManager
+{
+    
+}
+
++ (ASIHTTPRequest *)userInfoWithOAuth:(TencentOAuth *)oAuth
+                              success:(void (^)(id json))success
+                                error:(void (^)(NSString *errorMsg))errorBlock;
+{
+    ASIHTTPRequest *request =
+    [[CUQQAPIClient shareObjectManager] getJSONRequestAtPath:@"user/get_user_info"
+                                                  parameters:@{
+                                                               @"access_token" : oAuth.accessToken,
+                                                               @"openid" : oAuth.openId,
+                                                               @"oauth_consumer_key" : oAuth.appId,
+                                                               @"format" : @"json"
+                                                               }
+                                                     success:^(ASIHTTPRequest *ASIRequest, id json) {
+                                                         success(json);
+                                                     } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
+                                                         errorBlock(errorMsg);
+                                                     }];
+    
+    return request;
+}
+
+@end

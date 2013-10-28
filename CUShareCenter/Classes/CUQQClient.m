@@ -7,6 +7,7 @@
 //
 
 #import "CUQQClient.h"
+#import "CUQQAPIClient.h"
 #import "PlatFormModel.h"
 #import "CUPlatFormOAuth.h"
 #import "CUPlatFormUserModel.h"
@@ -142,6 +143,60 @@
     return [self.qqOAuthSDK isSessionValid];
 }
 
+#pragma mark - userInfo
+
+- (CUPlatFormOAuth *)OAuthInfo
+{
+    if (![self.qqOAuthSDK isSessionValid]) {
+        return nil;
+    }
+    
+    CUPlatFormOAuth *info = [CUPlatFormOAuth new];
+    
+    info.userId = self.qqOAuthSDK.openId;
+    info.accessToken = self.qqOAuthSDK.accessToken;
+    
+    return info;
+}
+
+- (void)userInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
+{
+    [self.request clearDelegatesAndCancel];
+    self.request = [self requestUserInfoSuccess:success error:errorBlock];
+    [self.request startAsynchronous];
+}
+
+- (ASIHTTPRequest *)requestUserInfoSuccess:(void (^)(CUPlatFormUserModel *model))success error:(void (^)(id data))errorBlock
+{
+    if (!self.qqOAuthSDK.isSessionValid) {
+        return nil;
+    }
+    
+    NSString *accessToken = self.qqOAuthSDK.accessToken;
+    NSString *uid = self.qqOAuthSDK.openId;
+    
+    NSAssert(accessToken, @"accessToken nil");
+    NSAssert(uid, @"uid nil");
+    
+    __weak typeof(self)selfWeak = self;
+    
+    ASIHTTPRequest *request =
+    [CUQQAPIClient userInfoWithOAuth:selfWeak.qqOAuthSDK
+                             success:^(id json) {
+                                 CUPlatFormUserModel *model = [CUPlatFormUserModel new];
+                                 model.nickname = json[@"nickname"];
+                                 model.userId = selfWeak.qqOAuthSDK.openId;
+                                 model.avatar = [json[@"figureurl_qq_2"] length] > 0 ? json[@"figureurl_qq_2"] : json[@"figureurl_qq_1"];
+                                 model.orginalData = json;
+                                 
+                                 success(model);
+                                 
+                             } error:^(NSString *errorMsg) {
+                                 errorBlock(errorMsg);
+                             }];
+    return request;
+}
+
 - (void)clear
 {
     self.successBlock = nil;
@@ -197,6 +252,22 @@
     }
     
     [self clear];
+}
+
+/**
+ * 请求获得内容 当前版本只支持第三方相应腾讯业务请求
+ */
+- (BOOL)onTencentReq:(TencentApiReq *)req
+{
+    return YES;
+}
+
+/**
+ * 响应请求答复 当前版本只支持腾讯业务相应第三方的请求答复
+ */
+- (BOOL)onTencentResp:(TencentApiResp *)resp
+{
+    return YES;
 }
 
 @end
