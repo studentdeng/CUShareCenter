@@ -49,4 +49,54 @@
     return request;
 }
 
++ (ASIHTTPRequest *)postContent:(NSString *)content
+                          OAuth:(TencentOAuth *)oAuth
+                        success:(void (^)(id json))success
+                          error:(void (^)(NSString *errorMsg))errorBlock
+{
+    ASIHTTPRequest *request =
+    
+    [[CUQQAPIClient shareObjectManager] postJSONRequestAtPath:@"t/add_t"
+                                                   parameters:@{
+                                                                @"access_token" : oAuth.accessToken,
+                                                                @"openid" : oAuth.openId,
+                                                                @"oauth_consumer_key" : oAuth.appId,
+                                                                @"format" : @"json",
+                                                                @"content" : content
+                                                                }
+                                                      success:^(ASIHTTPRequest *ASIRequest, id json) {
+                                                          success(json);
+                                                      } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
+                                                          errorBlock(errorMsg);
+                                                      }];
+    return request;
+}
+
++ (ASIHTTPRequest *)postContent:(NSString *)content
+                      ImageData:(NSData *)imageData
+                          OAuth:(TencentOAuth *)oAuth
+                        success:(void (^)(id json))success
+                          error:(void (^)(NSString *errorMsg))errorBlock
+{
+    ASIHTTPRequest *request =
+    [[CUQQAPIClient shareObjectManager] postJSONRequestAtPath:@"t/add_pic_t"
+                                                    userBlock:^(ASIFormDataRequest *ASIRequest) {
+                                                        
+                                                        [ASIRequest addPostValue:oAuth.accessToken forKey:@"access_token"];
+                                                        [ASIRequest addPostValue:oAuth.openId forKey:@"openid"];
+                                                        [ASIRequest addPostValue:oAuth.appId forKey:@"oauth_consumer_key"];
+                                                        [ASIRequest addPostValue:@"json" forKey:@"format"];
+                                                        
+                                                        [ASIRequest addPostValue:content forKey:@"content"];
+                                                        [ASIRequest addData:imageData forKey:@"pic"];
+                                                        
+                                                    } success:^(ASIHTTPRequest *ASIRequest, id json) {
+                                                        success(json);
+                                                    } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
+                                                        errorBlock(errorMsg);
+                                                    }];
+    
+    return request;
+}
+
 @end

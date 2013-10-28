@@ -197,6 +197,56 @@
     return request;
 }
 
+#pragma mark - share
+
+- (void)content:(NSString *)content
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    __weak typeof(self)selfWeak = self;
+    
+    [self.request clearDelegatesAndCancel];
+    self.request =
+    [CUQQAPIClient postContent:content
+                         OAuth:selfWeak.qqOAuthSDK
+                       success:^(id json) {
+                           success(json);
+                       } error:^(NSString *errorMsg) {
+                           errorBlock(errorMsg);
+                       }];
+    
+    [self.request startAsynchronous];
+}
+
+- (void)content:(NSString *)content
+      imageData:(NSData *)imageData
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    __weak typeof(self)selfWeak = self;
+    
+    [self.request clearDelegatesAndCancel];
+    self.request =
+    [CUQQAPIClient postContent:content
+                     ImageData:imageData
+                         OAuth:selfWeak.qqOAuthSDK
+                       success:^(id json) {
+                           success(json);
+                       } error:^(NSString *errorMsg) {
+                           errorBlock(errorMsg);
+                       }];
+    
+    [self.request startAsynchronous];
+}
+
+- (void)content:(NSString *)content
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    NSAssert(FALSE, @"not @implement 新浪高级授权接口");
+}
+
 - (void)clear
 {
     self.successBlock = nil;

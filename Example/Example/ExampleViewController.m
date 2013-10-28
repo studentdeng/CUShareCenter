@@ -136,4 +136,29 @@
         
     }];
 }
+- (IBAction)QQShareButtonClicked:(id)sender {
+    
+    id <CUShareClientDataSource> client = [CUShareCenter clientWithPlatForm:@"QQ"];
+    if (![client isBind]) {
+        
+        [client bindSuccess:^(NSString *message, id data) {
+            
+        } error:^(NSString *message, id data) {
+            
+        }];
+        
+        return;
+    }
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"gif"];
+    NSData *imageData = [NSData dataWithContentsOfFile:path];
+    
+    [[CUShareCenter clientWithPlatForm:@"QQ"] content:@"test"
+                                            imageData:imageData
+                                              success:^(id data) {
+                                                  NSLog(@"%@", data);
+                                              } error:^(id error) {
+                                                   NSLog(@"%@", error);
+                                              }];
+}
 @end

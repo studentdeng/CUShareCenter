@@ -18,4 +18,15 @@
                               success:(void (^)(id json))success
                                 error:(void (^)(NSString *errorMsg))errorBlock;
 
++ (ASIHTTPRequest *)postContent:(NSString *)content
+                          OAuth:(TencentOAuth *)oAuth
+                        success:(void (^)(id json))success
+                          error:(void (^)(NSString *errorMsg))errorBlock;
+
++ (ASIHTTPRequest *)postContent:(NSString *)content
+                      ImageData:(NSData *)imageData
+                          OAuth:(TencentOAuth *)oAuth
+                        success:(void (^)(id json))success
+                          error:(void (^)(NSString *errorMsg))errorBlock;
+
 @end
