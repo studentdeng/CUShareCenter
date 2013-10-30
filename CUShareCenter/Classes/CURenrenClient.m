@@ -140,6 +140,74 @@
     return request;
 }
 
+#pragma mark - share
+
+- (void)content:(NSString *)content
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    NSAssert(FALSE, @"not implement ");
+}
+
+- (void)content:(NSString *)content
+      imageData:(NSData *)imageData
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    NSAssert(FALSE, @"not implement ");
+}
+
+- (void)content:(NSString *)content
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    NSAssert(FALSE, @"not implement ");
+}
+
+- (void)content:(NSString *)content
+    description:(NSString *)description
+          title:(NSString *)title
+           link:(NSString *)link
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock
+{
+    NSString *accessToken = [RennClient accessToken].accessToken;
+    
+    [self.request clearDelegatesAndCancel];
+    self.request =
+    [[CURenrenAPIClient shareObjectManager] postJSONRequestAtPath:@"v2/feed/put"
+                                                       parameters:@{
+                                                                    @"access_token" : accessToken,
+                                                                    @"description" : description,
+                                                                    @"imageUrl" : imageURL,
+                                                                    @"title" : title,
+                                                                    @"targetUrl" : link,
+                                                                    @"message" : content
+                                                                    }
+                                                          success:^(ASIHTTPRequest *ASIRequest, id json) {
+                                                              success(json);
+                                                          } error:^(ASIHTTPRequest *ASIRequest, NSString *errorMsg) {
+                                                              errorBlock(errorMsg);
+                                                          }];
+    [self.request startAsynchronous];
+}
+
+- (void)clear
+{
+    self.successBlock = nil;
+    self.failedBlock = nil;
+    
+    [self.request clearDelegatesAndCancel];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [RennClient handleOpenURL:url];
+}
 
 #pragma mark - RennLoginDelegate
 

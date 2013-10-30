@@ -192,4 +192,21 @@
         }];
     }
 }
+- (IBAction)renrenShareButtonClicked:(id)sender {
+    id <CUShareClientDataSource> client = [CUShareCenter clientWithPlatForm:@"renren"];
+    
+    if ([client isBind]) {
+        
+        [client content:@"test"
+            description:@"description"
+                  title:@"title"
+                   link:@"http://www.baidu.com"
+               imageURL:@"http://d.hiphotos.baidu.com/pic/w%3D230/sign=1847e71f63d9f2d3201123ec99ed8a53/d8f9d72a6059252db799c5fa359b033b5ab5b946.jpg"
+                success:^(id data) {
+                    
+                } error:^(id error) {
+                    
+                }];
+    }
+}
 @end

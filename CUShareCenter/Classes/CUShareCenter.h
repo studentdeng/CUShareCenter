@@ -39,7 +39,7 @@
 - (void)content:(NSString *)content
       imageData:(NSData *)imageData
         success:(void (^)(id data))success
-          error:(void (^)(id error))errorBlock;;
+          error:(void (^)(id error))errorBlock;
 
 - (void)content:(NSString *)content
        imageURL:(NSString *)imageURL
@@ -49,6 +49,15 @@
 #pragma mark - other
 - (void)clear;
 - (BOOL)openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation;
+
+@optional
+- (void)content:(NSString *)content
+    description:(NSString *)description
+          title:(NSString *)title
+           link:(NSString *)link
+       imageURL:(NSString *)imageURL
+        success:(void (^)(id data))success
+          error:(void (^)(id error))errorBlock;
 
 @end
 
