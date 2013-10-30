@@ -37,9 +37,15 @@
                                     appSecret:@"024e9c1c0aca2d28c03f182e5924de67"
                                   redirectUri:@"http://112.124.12.104/network_analysis/index.php/sns/session?provider=weibo"];
     
-    [CUShareCenter connectTencentQQWithAppKey:@"100383099"
-                                    appSecret:@"b18665b1f77eb621e2e2403e4a4767ea"
-                                  redirectUri:@""];
+    [CUShareCenter connectTencentQQWithAppID:@"100383099"
+                                      appKey:@"4a9f17a08ed276a198de27ba58ff9b6d"
+                                 redirectUri:@""];
+    
+    [CUShareCenter connectRenRenWithAppID:@"168802"
+                                   AppKey:@"e884884ac90c4182a426444db12915bf"
+                                appSecret:@"094de55dc157411e8a5435c6a7c134c5"
+                              redirectUri:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -160,5 +166,30 @@
                                               } error:^(id error) {
                                                    NSLog(@"%@", error);
                                               }];
+}
+- (IBAction)loginRenrenButtonClicked:(id)sender {
+    id <CUShareClientDataSource> client = [CUShareCenter clientWithPlatForm:@"renren"];
+    if ([client isBind]) {
+        NSLog(@"already login");
+        
+        return;
+    }
+    
+    [client bindSuccess:^(NSString *message, id data) {
+        NSLog(@"%@", message);
+    } error:^(NSString *message, id data) {
+        NSLog(@"%@", message);
+    }];
+}
+- (IBAction)renrenUserInfoButtonClicked:(id)sender {
+    id <CUShareClientDataSource> client = [CUShareCenter clientWithPlatForm:@"renren"];
+    
+    if ([client isBind]) {
+        [client userInfoSuccess:^(CUPlatFormUserModel *model) {
+            NSLog(@"%@", model.nickname);
+        } error:^(id data) {
+            
+        }];
+    }
 }
 @end

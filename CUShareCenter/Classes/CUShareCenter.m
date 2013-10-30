@@ -11,6 +11,7 @@
 #import "PlatFormModel.h"
 #import "CUSINAClient.h"
 #import "CUQQClient.h"
+#import "CURenrenClient.h"
 
 @interface CUShareCenter ()
 
@@ -40,22 +41,24 @@
                          appSecret:(NSString *)appSecret
                        redirectUri:(NSString *)redirectUri
 {
-    [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"新浪微博"
-                                                          AppKey:appKey
-                                                       appSecret:appSecret
-                                                     redirectUri:redirectUri];
+    [[CUShareCenter sharedInstance] connectWithPlatForm:@"新浪微博"
+                                                  AppId:nil
+                                                 AppKey:appKey
+                                              appSecret:appSecret
+                                            redirectUri:redirectUri];
 }
 
 
 //腾讯QQ
-+ (void)connectTencentQQWithAppKey:(NSString *)appKey
-                         appSecret:(NSString *)appSecret
-                       redirectUri:(NSString *)redirectUri
++ (void)connectTencentQQWithAppID:(NSString *)appID
+                           appKey:(NSString *)appKey
+                      redirectUri:(NSString *)redirectUri
 {
-    [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"QQ"
-                                                          AppKey:appKey
-                                                       appSecret:appSecret
-                                                     redirectUri:redirectUri];
+    [[CUShareCenter sharedInstance] connectWithPlatForm:@"QQ"
+                                                  AppId:appID
+                                                 AppKey:appKey
+                                              appSecret:nil
+                                            redirectUri:redirectUri];
 }
 
 //腾讯微博
@@ -63,21 +66,24 @@
                             appSecret:(NSString *)appSecret
                           redirectUri:(NSString *)redirectUri
 {
-    [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"tencent.weibo"
-                                                          AppKey:appKey
-                                                       appSecret:appSecret
-                                                     redirectUri:redirectUri];
+    [[CUShareCenter sharedInstance] connectWithPlatForm:@"tencent.weibo"
+                                                  AppId:nil
+                                                 AppKey:appKey
+                                              appSecret:appSecret
+                                            redirectUri:redirectUri];
 }
 
 //人人
-+ (void)connectRenRenWithAppKey:(NSString *)appKey
-                      appSecret:(NSString *)appSecret
-                    redirectUri:(NSString *)redirectUri
++ (void)connectRenRenWithAppID:(NSString *)appId
+                        AppKey:(NSString *)appKey
+                     appSecret:(NSString *)appSecret
+                   redirectUri:(NSString *)redirectUri;
 {
-    [[CUShareCenter sharedInstance] connectSinaWeiboWithPlatForm:@"renren"
-                                                          AppKey:appKey
-                                                       appSecret:appSecret
-                                                     redirectUri:redirectUri];
+    [[CUShareCenter sharedInstance] connectWithPlatForm:@"renren"
+                                                  AppId:appId
+                                                 AppKey:appKey
+                                              appSecret:appSecret
+                                            redirectUri:redirectUri];
 }
 
 + (id<CUShareClientDataSource>)clientWithPlatForm:(NSString *)platForm
@@ -100,6 +106,13 @@
         NSAssert(model, [platForm stringByAppendingString:@" did not found"]);
         return [[CUQQClient alloc] initWithPlatForm:model];
     }
+    else if ([platForm isEqualToString:@"renren"])
+    {
+        PlatFormModel *model = [CUShareCenter sharedInstance].platFormDictionary[platForm];
+        NSAssert(model, [platForm stringByAppendingString:@" did not found"]);
+        return [[CURenrenClient alloc] initWithPlatForm:model];
+    }
+    
     
     return nil;
 }
@@ -113,20 +126,18 @@
 
 /*!
  */
-- (void)connectSinaWeiboWithPlatForm:(NSString *)platForm
-                              AppKey:(NSString *)appKey
-                         appSecret:(NSString *)appSecret
-                       redirectUri:(NSString *)redirectUri
+- (void)connectWithPlatForm:(NSString *)platForm
+                      AppId:(NSString *)appId
+                     AppKey:(NSString *)appKey
+                  appSecret:(NSString *)appSecret
+                redirectUri:(NSString *)redirectUri
 {
-    NSAssert(platForm.length, @"param error");
-    NSAssert(appKey.length, @"param error");
-    NSAssert(appSecret.length, @"param error");
-    
     PlatFormModel *model = [PlatFormModel new];
     
-    model.platForm = platForm;
-    model.appKey = appKey;
-    model.appSecret = appSecret;
+    model.platForm = SAFE_STRING(platForm);
+    model.appKey = SAFE_STRING(appKey);
+    model.appSecret = SAFE_STRING(appSecret);
+    model.appId = SAFE_STRING(appId);
     model.redirectUri = SAFE_STRING(redirectUri);
     
     

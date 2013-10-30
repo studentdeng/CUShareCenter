@@ -72,16 +72,17 @@
                           redirectUri:(NSString *)redirectUri;
 
 /**
- 腾讯微博
+ 腾讯QQ
  */
-+ (void)connectTencentQQWithAppKey:(NSString *)appKey
-                         appSecret:(NSString *)appSecret
++ (void)connectTencentQQWithAppID:(NSString *)appID
+                           appKey:(NSString *)appKey
                        redirectUri:(NSString *)redirectUri;
 
 /*!
  人人
  */
-+ (void)connectRenRenWithAppKey:(NSString *)appKey
++ (void)connectRenRenWithAppID:(NSString *)appId
+                        AppKey:(NSString *)appKey
                       appSecret:(NSString *)appSecret
                     redirectUri:(NSString *)redirectUri;
 

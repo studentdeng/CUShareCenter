@@ -45,7 +45,7 @@
 
 - (void)setupWithPlatForm:(PlatFormModel *)model
 {
-    self.qqOAuthSDK = [[TencentOAuth alloc] initWithAppId:model.appKey
+    self.qqOAuthSDK = [[TencentOAuth alloc] initWithAppId:model.appId
                                                          andDelegate:self];
     if (model.redirectUri.length > 0) {
         self.qqOAuthSDK.redirectURI = model.redirectUri;

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D75EF2821820E1C0005030AD /* CURenrenClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D75EF2811820E1C0005030AD /* CURenrenClient.m */; };
+		D75EF2871820E3E3005030AD /* RennSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D75EF2851820E3E3005030AD /* RennSDK.bundle */; };
+		D75EF2881820E3E3005030AD /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D75EF2861820E3E3005030AD /* RennSDK.framework */; };
+		D75EF28B18210879005030AD /* CURenrenAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D75EF28A18210879005030AD /* CURenrenAPIClient.m */; };
 		D7A210B8181CB2D30060AEC1 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D7A210B7181CB2D30060AEC1 /* test.jpg */; };
 		D7A210BA181CB89D0060AEC1 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = D7A210B9181CB89D0060AEC1 /* test.gif */; };
 		D7A210BE181CB9CF0060AEC1 /* CUQQClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A210BD181CB9CF0060AEC1 /* CUQQClient.m */; };
@@ -60,6 +64,12 @@
 /* Begin PBXFileReference section */
 		4366F02E4DCB48ACB7C8D468 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E8EF4079A6421C9F723F99 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		D75EF2801820E1C0005030AD /* CURenrenClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURenrenClient.h; sourceTree = "<group>"; };
+		D75EF2811820E1C0005030AD /* CURenrenClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CURenrenClient.m; sourceTree = "<group>"; };
+		D75EF2851820E3E3005030AD /* RennSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = RennSDK.bundle; sourceTree = "<group>"; };
+		D75EF2861820E3E3005030AD /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
+		D75EF28918210879005030AD /* CURenrenAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CURenrenAPIClient.h; sourceTree = "<group>"; };
+		D75EF28A18210879005030AD /* CURenrenAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CURenrenAPIClient.m; sourceTree = "<group>"; };
 		D7A210B7181CB2D30060AEC1 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		D7A210B9181CB89D0060AEC1 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
 		D7A210BC181CB9CF0060AEC1 /* CUQQClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CUQQClient.h; sourceTree = "<group>"; };
@@ -127,6 +137,7 @@
 				D7A210C9181CBAD40060AEC1 /* libsqlite3.dylib in Frameworks */,
 				D7A210C7181CBACA0060AEC1 /* SystemConfiguration.framework in Frameworks */,
 				D7A210C5181CBAC00060AEC1 /* libiconv.dylib in Frameworks */,
+				D75EF2881820E3E3005030AD /* RennSDK.framework in Frameworks */,
 				D7C0D52F181A377200C34D7F /* CoreGraphics.framework in Frameworks */,
 				D7C0D531181A377200C34D7F /* UIKit.framework in Frameworks */,
 				D7A210DC181CE6370060AEC1 /* TencentOpenAPI.framework in Frameworks */,
@@ -148,6 +159,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D75EF2831820E1C6005030AD /* renren */ = {
+			isa = PBXGroup;
+			children = (
+				D75EF2801820E1C0005030AD /* CURenrenClient.h */,
+				D75EF2811820E1C0005030AD /* CURenrenClient.m */,
+				D75EF28918210879005030AD /* CURenrenAPIClient.h */,
+				D75EF28A18210879005030AD /* CURenrenAPIClient.m */,
+			);
+			name = renren;
+			sourceTree = "<group>";
+		};
+		D75EF2841820E3E3005030AD /* renren */ = {
+			isa = PBXGroup;
+			children = (
+				D75EF2851820E3E3005030AD /* RennSDK.bundle */,
+				D75EF2861820E3E3005030AD /* RennSDK.framework */,
+			);
+			path = renren;
+			sourceTree = "<group>";
+		};
 		D7A210B6181CB2D30060AEC1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,6 +323,7 @@
 				D7C0D578181A3DAC00C34D7F /* CUShareCenter.m */,
 				D7A210BB181CB97B0060AEC1 /* sina */,
 				D7C15CAA181E0E8500F83FE6 /* qq */,
+				D75EF2831820E1C6005030AD /* renren */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -299,6 +331,7 @@
 		D7C0D580181A416400C34D7F /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				D75EF2841820E3E3005030AD /* renren */,
 				D7A210BF181CBA900060AEC1 /* qq */,
 				D7C0D58A181A47C400C34D7F /* SinaWeibo */,
 			);
@@ -409,6 +442,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7A210C3181CBA900060AEC1 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
+				D75EF2871820E3E3005030AD /* RennSDK.bundle in Resources */,
 				D7A210BA181CB89D0060AEC1 /* test.gif in Resources */,
 				D7C0D567181A37B400C34D7F /* Images.xcassets in Resources */,
 				D7A210B8181CB2D30060AEC1 /* test.jpg in Resources */,
@@ -476,9 +510,11 @@
 				D7A210BE181CB9CF0060AEC1 /* CUQQClient.m in Sources */,
 				D7C0D579181A3DAC00C34D7F /* CUShareCenter.m in Sources */,
 				D7C0D5A2181A86A500C34D7F /* CUPlatFormOAuth.m in Sources */,
+				D75EF28B18210879005030AD /* CURenrenAPIClient.m in Sources */,
 				D7C0D564181A37B400C34D7F /* AppDelegate.m in Sources */,
 				D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */,
 				D7C0D59A181A50FD00C34D7F /* ExampleViewController.m in Sources */,
+				D75EF2821820E1C0005030AD /* CURenrenClient.m in Sources */,
 				D7C0D596181A47C400C34D7F /* SinaWeiboRequest.m in Sources */,
 				D7C15CAD181E0E9C00F83FE6 /* CUQQAPIClient.m in Sources */,
 			);
@@ -604,6 +640,7 @@
 					"$(inherited)",
 					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
 					/Users/curer/myGitHub/CUShareCenter/Example,
+					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
@@ -638,6 +675,7 @@
 					"$(inherited)",
 					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
 					/Users/curer/myGitHub/CUShareCenter/Example,
+					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
