@@ -22,24 +22,6 @@
 #define kSinaWeiboRequestTimeOutInterval   180.0
 #define kSinaWeiboRequestStringBoundary    @"293iosfksdfkiowjksdf31jsiuwq003s02dsaffafass3qw"
 
-@interface NSString (SinaWeiboEncode)
-- (NSString *)URLEncodedString;
-@end
-
-@implementation NSString (SinaWeiboEncode)
-
-- (NSString *)URLEncodedStringWithCFStringEncoding:(CFStringEncoding)encoding
-{
-    return [(NSString *) CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)[[self mutableCopy] autorelease], NULL, CFSTR("￼=,!$&'()*+;@?\n\"<>#\t :/"), encoding) autorelease];
-}
-
-- (NSString *)URLEncodedString
-{
-	return [self URLEncodedStringWithCFStringEncoding:kCFStringEncodingUTF8];
-}
-
-@end
-
 @interface SinaWeibo (SinaWeiboRequest)
 - (void)requestDidFinish:(SinaWeiboRequest *)request;
 - (void)requestDidFailWithInvalidToken:(NSError *)error;
@@ -71,19 +53,7 @@
 
 - (void)dealloc
 {
-    sinaweibo = nil;
-    
-    [url release], url = nil;
-    [httpMethod release], httpMethod = nil;
-    [params release], params = nil;
-    
-    [responseData release];
-	responseData = nil;
-    
     [connection cancel];
-    [connection release], connection = nil;
-    
-    [super dealloc];
 }
 
 #pragma mark - SinaWeiboRequest Private Methods
@@ -280,15 +250,14 @@
             continue;
         }
         
-        NSString* escaped_value = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+        NSString* escaped_value = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
                                                                                       NULL, /* allocator */
                                                                                       (CFStringRef)[params objectForKey:key],
                                                                                       NULL, /* charactersToLeaveUnescaped */
                                                                                       (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                      kCFStringEncodingUTF8);
+                                                                                      kCFStringEncodingUTF8));
         
         [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, escaped_value]];
-        [escaped_value release];
     }
     NSString* query = [pairs componentsJoinedByString:@"&"];
     
@@ -300,7 +269,7 @@
                               params:(NSDictionary *)params
                             delegate:(id<SinaWeiboRequestDelegate>)delegate
 {
-    SinaWeiboRequest *request = [[[SinaWeiboRequest alloc] init] autorelease];
+    SinaWeiboRequest *request = [[SinaWeiboRequest alloc] init];
     
     request.url = url;
     request.httpMethod = httpMethod;
@@ -352,11 +321,7 @@
 
 - (void)disconnect
 {
-    [responseData release];
-	responseData = nil;
-    
     [connection cancel];
-    [connection release], connection = nil;
 }
 
 #pragma mark - NSURLConnection Delegate Methods
@@ -386,12 +351,7 @@
 {
 	[self handleResponseData:responseData];
     
-	[responseData release];
-	responseData = nil;
-    
     [connection cancel];
-	[connection release];
-	connection = nil;
     
     [sinaweibo requestDidFinish:self];
 }
@@ -399,13 +359,8 @@
 - (void)connection:(NSURLConnection *)theConnection didFailWithError:(NSError *)error
 {
 	[self failedWithError:error];
-	
-	[responseData release];
-	responseData = nil;
     
     [connection cancel];
-	[connection release];
-	connection = nil;
     
     [sinaweibo requestDidFinish:self];
 }

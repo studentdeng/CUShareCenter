@@ -24,7 +24,6 @@
     NSString *appRedirectURI;
     NSString *ssoCallbackScheme;
     
-    SinaWeiboRequest *request;
     NSMutableSet *requests;
 }
 

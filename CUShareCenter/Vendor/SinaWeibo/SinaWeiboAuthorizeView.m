@@ -139,7 +139,6 @@ static CGFloat kBorderWidth = 10;
         webView.delegate = self;
         webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:webView];
-        [webView release];
         
         UIImage* closeImage = [UIImage imageNamed:@"SinaWeibo.bundle/images/close.png"];
         UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
@@ -169,11 +168,7 @@ static CGFloat kBorderWidth = 10;
 
 - (void)dealloc
 {
-    [authParams release], authParams = nil;
-    [appRedirectURI release], appRedirectURI = nil;
-    [modalBackgroundView release], modalBackgroundView = nil;
     
-    [super dealloc];
 }
 
 - (id)initWithAuthParams:(NSDictionary *)params
@@ -183,7 +178,7 @@ static CGFloat kBorderWidth = 10;
     {
         self.delegate = _delegate;
         authParams = [params copy];
-        appRedirectURI = [[authParams objectForKey:@"redirect_uri"] retain];
+        appRedirectURI = [authParams objectForKey:@"redirect_uri"];
     }
     return self;
 }

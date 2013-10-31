@@ -34,23 +34,19 @@
 
 @interface SinaWeiboRequest : NSObject
 {
-    SinaWeibo                       *sinaweibo;//weak reference
-    
     NSString                        *url;
     NSString                        *httpMethod;
     NSDictionary                    *params;
     
     NSURLConnection                 *connection;
     NSMutableData                   *responseData;
-    
-    id<SinaWeiboRequestDelegate>    delegate;
 }
 
-@property (nonatomic, assign) SinaWeibo *sinaweibo;
+@property (nonatomic, weak) SinaWeibo *sinaweibo;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *httpMethod;
 @property (nonatomic, retain) NSDictionary *params;
-@property (nonatomic, assign) id<SinaWeiboRequestDelegate> delegate;
+@property (nonatomic, weak) id<SinaWeiboRequestDelegate> delegate;
 
 + (SinaWeiboRequest *)requestWithURL:(NSString *)url 
                           httpMethod:(NSString *)httpMethod 

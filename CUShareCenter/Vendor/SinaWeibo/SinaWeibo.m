@@ -17,6 +17,7 @@
 @property (nonatomic, copy) NSString *appKey;
 @property (nonatomic, copy) NSString *appSecret;
 @property (nonatomic, copy) NSString *appRedirectURI;
+@property (nonatomic, strong) SinaWeiboRequest *request;
 
 @end
 
@@ -86,22 +87,12 @@
 {
     delegate = nil;
     
-    for (SinaWeiboRequest* _request in requests)
+    for (SinaWeiboRequest* aRequest in requests)
     {
-        _request.sinaweibo = nil;
+        aRequest.sinaweibo = nil;
     }
     
-    [request disconnect];
-    [request release], request = nil;
-    [userID release], userID = nil;
-    [accessToken release], accessToken = nil;
-    [expirationDate release], expirationDate = nil;
-    [appKey release], appKey = nil;
-    [appSecret release], appSecret = nil;
-    [appRedirectURI release], appRedirectURI = nil;
-    [ssoCallbackScheme release], ssoCallbackScheme = nil;
-    
-    [super dealloc];
+    [self.request disconnect];
 }
 
 /**
@@ -133,21 +124,20 @@
                             @"authorization_code", @"grant_type",
                             self.appRedirectURI, @"redirect_uri",
                             code, @"code", nil];
-    [request disconnect];
-    [request release], request = nil;
+    [self.request disconnect];
     
-    request = [[SinaWeiboRequest requestWithURL:kSinaWeiboWebAccessTokenURL
-                                     httpMethod:@"POST"
-                                         params:params
-                                       delegate:self] retain];
+    self.request = [SinaWeiboRequest requestWithURL:kSinaWeiboWebAccessTokenURL
+                                          httpMethod:@"POST"
+                                              params:params
+                                            delegate:self];
     
-    [request connect];
+    [self.request connect];
 }
 
-- (void)requestDidFinish:(SinaWeiboRequest *)_request
+- (void)requestDidFinish:(SinaWeiboRequest *)aRequest
 {
-    [requests removeObject:_request];
-    _request.sinaweibo = nil;
+    [requests removeObject:aRequest];
+    aRequest.sinaweibo = nil;
 }
 
 - (void)requestDidFailWithInvalidToken:(NSError *)error
@@ -341,7 +331,6 @@
             [[SinaWeiboAuthorizeView alloc] initWithAuthParams:params
                                                       delegate:self];
             [authorizeView show];
-            [authorizeView release];
         }
     }
 }
@@ -385,14 +374,14 @@
         [params setValue:self.accessToken forKey:@"access_token"];
         NSString *fullURL = [kSinaWeiboSDKAPIDomain stringByAppendingString:url];
         
-        SinaWeiboRequest *_request = [SinaWeiboRequest requestWithURL:fullURL
+        SinaWeiboRequest *aRequest = [SinaWeiboRequest requestWithURL:fullURL
                                                            httpMethod:httpMethod
                                                                params:params
                                                              delegate:_delegate];
-        _request.sinaweibo = self;
-        [requests addObject:_request];
-        [_request connect];
-        return _request;
+        aRequest.sinaweibo = self;
+        [requests addObject:aRequest];
+        [aRequest connect];
+        return aRequest;
     }
     else
     {
@@ -459,27 +448,27 @@
 
 #pragma mark - SinaWeiboRequest Delegate
 
-- (void)request:(SinaWeiboRequest *)_request didFailWithError:(NSError *)error
+- (void)request:(SinaWeiboRequest *)aRequest didFailWithError:(NSError *)error
 {
-    if (_request == request)
+    if (aRequest == self.request)
     {
         if ([delegate respondsToSelector:@selector(sinaweibo:logInDidFailWithError:)])
         {
             [delegate sinaweibo:self logInDidFailWithError:error];
         }
         
-        [request release], request = nil;
+        self.request = nil;
     }
 }
 
-- (void)request:(SinaWeiboRequest *)_request didFinishLoadingWithResult:(id)result
+- (void)request:(SinaWeiboRequest *)aRequest didFinishLoadingWithResult:(id)result
 {
-    if (_request == request)
+    if (aRequest == self.request)
     {
         NSLog(@"access token result = %@", result);
         
         [self logInDidFinishWithAuthInfo:result];
-        [request release], request = nil;
+        self.request = nil;
     }
 }
 

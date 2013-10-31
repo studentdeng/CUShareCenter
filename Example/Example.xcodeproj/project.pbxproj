@@ -39,9 +39,9 @@
 		D7C0D57F181A3F5700C34D7F /* PlatFormModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D57D181A3F5700C34D7F /* PlatFormModel.m */; };
 		D7C0D589181A467200C34D7F /* CUSINAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D588181A467200C34D7F /* CUSINAClient.m */; };
 		D7C0D593181A47C400C34D7F /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7C0D58B181A47C400C34D7F /* SinaWeibo.bundle */; };
-		D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D58D181A47C400C34D7F /* SinaWeibo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D7C0D595181A47C400C34D7F /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D58F181A47C400C34D7F /* SinaWeiboAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D7C0D596181A47C400C34D7F /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D592181A47C400C34D7F /* SinaWeiboRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D7C0D594181A47C400C34D7F /* SinaWeibo.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D58D181A47C400C34D7F /* SinaWeibo.m */; };
+		D7C0D595181A47C400C34D7F /* SinaWeiboAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D58F181A47C400C34D7F /* SinaWeiboAuthorizeView.m */; };
+		D7C0D596181A47C400C34D7F /* SinaWeiboRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D592181A47C400C34D7F /* SinaWeiboRequest.m */; };
 		D7C0D59A181A50FD00C34D7F /* ExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D598181A50FD00C34D7F /* ExampleViewController.m */; };
 		D7C0D59B181A50FD00C34D7F /* ExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7C0D599181A50FD00C34D7F /* ExampleViewController.xib */; };
 		D7C0D59F181A862D00C34D7F /* CUPlatFormUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D7C0D59E181A862D00C34D7F /* CUPlatFormUserModel.m */; };
