@@ -172,12 +172,6 @@
         return nil;
     }
     
-    NSString *accessToken = self.qqOAuthSDK.accessToken;
-    NSString *uid = self.qqOAuthSDK.openId;
-    
-    NSAssert(accessToken, @"accessToken nil");
-    NSAssert(uid, @"uid nil");
-    
     __weak typeof(self)selfWeak = self;
     
     ASIHTTPRequest *request =
