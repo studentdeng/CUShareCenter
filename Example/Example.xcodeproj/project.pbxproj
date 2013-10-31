@@ -638,14 +638,23 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
+					"/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq/**",
 					/Users/curer/myGitHub/CUShareCenter/Example,
-					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren,
+					"/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/ASIHTTPRequest\"",
+					"\"${PODS_ROOT}/Headers/CURestKit\"",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+					"\"${PODS_ROOT}/Headers/UALogger\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Example/Example-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2.2",
@@ -673,14 +682,23 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq,
+					"/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/qq/**",
 					/Users/curer/myGitHub/CUShareCenter/Example,
-					/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren,
+					"/Users/curer/myGitHub/CUShareCenter/CUShareCenter/Vendor/renren/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Example/Example-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/ASIHTTPRequest\"",
+					"\"${PODS_ROOT}/Headers/CURestKit\"",
+					"\"${PODS_ROOT}/Headers/Reachability\"",
+					"\"${PODS_ROOT}/Headers/UALogger\"",
+					"$(SDKROOT)/usr/include/libxml2",
+				);
 				INFOPLIST_FILE = "Example/Example-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lxml2.2",
