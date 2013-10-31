@@ -17,9 +17,12 @@ Pod::Spec.new do |s|
   s.source_files  = 'CUShareCenter', 'CUShareCenter/**/*.{h,m}'
 
   s.resource = 'CUShareCenter/Vendor/qq/TencentOpenApi_IOS_Bundle.bundle', 'CUShareCenter/Vendor/renren/RennSDK.bundle', 'CUShareCenter/Vendor/SinaWeibo/SinaWeibo.bundle'
+  
+  s.frameworks = 'CoreTelephony'
+  s.vendored_frameworks = 'CUShareCenter/Vendor/qq/TencentOpenAPI.framework', 'CUShareCenter/Vendor/renren/RennSDK.framework'
+
+  s.library = 'sqlite3', 'stdc++'
   s.requires_arc = true
 
-  s.frameworks = {'TencentOpenAPI', 'RennSDK'}
-
-  s.dependency 'CURestKit'
+  s.dependency 'CURestKit', '~> 1.0.3'
 end
