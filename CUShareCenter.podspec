@@ -19,7 +19,7 @@ Pod::Spec.new do |s|
   s.resource = 'CUShareCenter/Vendor/qq/TencentOpenApi_IOS_Bundle.bundle', 'CUShareCenter/Vendor/renren/RennSDK.bundle', 'CUShareCenter/Vendor/SinaWeibo/SinaWeibo.bundle'
   s.requires_arc = true
 
-  s.frameworks = {'TencentOpenAPI', 'RennSDK', ''}
+  s.frameworks = {'TencentOpenAPI', 'RennSDK'}
 
   s.dependency 'CURestKit'
 end
