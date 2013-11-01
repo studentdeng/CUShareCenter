@@ -7,6 +7,11 @@ CUShareCenter
 
 新浪 QQ	 RENREN2.0 认证分享
 
+#install
+
+	platform :ios, '5.0'
+	pod 'CUShareCenter'
+
 #example
 
 1、
