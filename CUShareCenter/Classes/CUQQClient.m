@@ -266,11 +266,13 @@
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    if (self.successBlock) {
-        self.successBlock(@"success", nil);
-    }
+    void (^successBlock)(NSString *message, id data) = [self.successBlock copy];
     
     [self clear];
+    
+    if (successBlock) {
+        successBlock(@"success", nil);
+    }
 }
 
 /**
