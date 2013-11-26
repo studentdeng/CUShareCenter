@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSString *userId;
 @property (nonatomic, strong) NSString *nickname;
 @property (nonatomic, strong) NSString *avatar;
+@property (nonatomic, strong) NSString *platform;
+@property (nonatomic, strong) NSString *gender;
 
 @property (nonatomic, strong) NSData *orginalData;
 
