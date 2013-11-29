@@ -44,18 +44,23 @@
                                             ssoCallbackScheme:nil
                                                   andDelegate:self];
         
-        NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_ACCESSTOKEN_KEY];
-        NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USERID_KEY];
-        NSDate *experationDate = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_EXPIRATIONDATE_KEY];
-        
-        if (accessToken != nil) {
-            self.sinaweiboSDK.accessToken = accessToken;
-            self.sinaweiboSDK.userID = uid;
-            self.sinaweiboSDK.expirationDate = experationDate;
-        }
+        [self refreshTokenFromDisk];
     }
     
     return self;
+}
+
+- (void)refreshTokenFromDisk
+{
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_ACCESSTOKEN_KEY];
+    NSString *uid = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_USERID_KEY];
+    NSDate *experationDate = [[NSUserDefaults standardUserDefaults] objectForKey:SINA_EXPIRATIONDATE_KEY];
+    
+    if (accessToken != nil) {
+        self.sinaweiboSDK.accessToken = accessToken;
+        self.sinaweiboSDK.userID = uid;
+        self.sinaweiboSDK.expirationDate = experationDate;
+    }
 }
 
 #pragma mark - Bind/unBind
@@ -144,7 +149,16 @@
                                                            model.userId = self.sinaweiboSDK.userID;
                                                            model.nickname = json[@"screen_name"];
                                                            model.avatar = json[@"avatar_hd"];
+                                                           model.platform = @"新浪微博";
                                                            model.orginalData = json;
+                                                           model.gender = json[@"gender"];
+                                                           if ([model.gender isEqualToString:@"m"]) {
+                                                               model.gender = @"男";
+                                                           }
+                                                           else
+                                                           {
+                                                               model.gender = @"女";
+                                                           }
                                                            
                                                            success(model);
                                                            
@@ -294,6 +308,8 @@
         
         void (^successBlock)(NSString *message, id data) = [self.successBlock copy];
         [self clear];
+        
+        [self refreshTokenFromDisk];
         
         if (successBlock) {
             successBlock(@"success", nil);
