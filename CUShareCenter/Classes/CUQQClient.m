@@ -181,7 +181,12 @@
                                  model.nickname = json[@"nickname"];
                                  model.userId = selfWeak.qqOAuthSDK.openId;
                                  model.avatar = [json[@"figureurl_qq_2"] length] > 0 ? json[@"figureurl_qq_2"] : json[@"figureurl_qq_1"];
+                                 model.platform = @"QQ";
                                  model.orginalData = json;
+                                 model.gender = json[@"gender"];
+                                 if (![model.gender isEqualToString:@"男"]) {
+                                     model.gender = @"女";
+                                 }
                                  
                                  success(model);
                                  

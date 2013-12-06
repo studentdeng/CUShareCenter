@@ -130,6 +130,7 @@
                                                              model.userId = uid;
                                                              model.nickname = responseJSON[@"name"];
                                                              model.avatar = responseJSON[@"avatar"][3][@"url"];
+                                                             model.platform = @"renren";
                                                              model.orginalData = responseJSON;
                                                            
                                                              success(model);
